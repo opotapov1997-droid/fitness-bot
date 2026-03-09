@@ -1,4 +1,4 @@
-from db import get_connection
+from database.db import get_connection
 
 
 def get_client_by_telegram_id(telegram_id):

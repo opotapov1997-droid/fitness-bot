@@ -6,5 +6,6 @@ main_menu = ReplyKeyboardMarkup(
         [KeyboardButton(text="Мои записи"), KeyboardButton(text="Цены")],
         [KeyboardButton(text="FAQ"), KeyboardButton(text="Контакты")],
     ],
-    resize_keyboard=True
+    resize_keyboard=True,
 )
+

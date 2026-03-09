@@ -5,7 +5,7 @@ from datetime import datetime, date
 from aiogram import Bot, Dispatcher
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-from db import init_db
+from database.db import init_db
 from config import BOT_TOKEN
 from handlers.start import router as start_router
 from handlers.info import router as info_router

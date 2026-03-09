@@ -1,6 +1,6 @@
 from datetime import date, datetime, timedelta
 
-from db import get_connection
+from database.db import get_connection
 
 
 REMINDER_HOURS_BEFORE = 12
