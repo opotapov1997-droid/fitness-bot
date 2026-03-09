@@ -3,18 +3,11 @@ from datetime import datetime
 from aiogram import Router, F
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
-from aiogram.fsm.state import State, StatesGroup
-from aiogram.types import (
-    CallbackQuery,
-    InlineKeyboardButton,
-    InlineKeyboardMarkup,
-    KeyboardButton,
-    Message,
-    ReplyKeyboardMarkup,
-)
+from aiogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup, Message
 
 from config import ADMIN_IDS
-from keyboards import main_menu
+from keyboards.main_menu import main_menu
+from keyboards.admin_menu import admin_menu
 from services.bookings import (
     get_booked_clients_for_slot,
     get_bookings_for_admin,
@@ -49,46 +42,9 @@ from services.training_types import (
     get_all_training_types,
     restore_training_type,
 )
+from states.admin_states import AddTrainingType, AddTemplate, Broadcast, BroadcastSlot
 
 router = Router()
-
-
-class AddTrainingType(StatesGroup):
-    name = State()
-
-
-class AddTemplate(StatesGroup):
-    weekday = State()
-    time = State()
-    trainer = State()
-    capacity = State()
-
-
-class Broadcast(StatesGroup):
-    text = State()
-
-
-class BroadcastSlot(StatesGroup):
-    text = State()
-
-
-admin_menu = ReplyKeyboardMarkup(
-    keyboard=[
-        [KeyboardButton(text="➕ Добавить тип тренировки")],
-        [KeyboardButton(text="➕ Добавить шаблон")],
-        [KeyboardButton(text="📋 Типы тренировок")],
-        [KeyboardButton(text="📋 Шаблоны тренировок")],
-        [KeyboardButton(text="🗂 Архив шаблонов")],
-        [KeyboardButton(text="👥 Кто записан")],
-        [KeyboardButton(text="👥 Пользователи")],
-        [KeyboardButton(text="👑 Администраторы")],
-        [KeyboardButton(text="📢 Рассылка")],
-        [KeyboardButton(text="📊 Статистика")],
-        [KeyboardButton(text="❌ Отмена")],
-        [KeyboardButton(text="⬅️ Выйти из админки")],
-    ],
-    resize_keyboard=True,
-)
 
 WEEKDAYS = {0: "Пн", 1: "Вт", 2: "Ср", 3: "Чт", 4: "Пт", 5: "Сб", 6: "Вс"}
 

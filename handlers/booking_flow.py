@@ -1,12 +1,5 @@
 from aiogram import Router, F
-from aiogram.types import (
-    Message,
-    CallbackQuery,
-    InlineKeyboardMarkup,
-    InlineKeyboardButton,
-    ReplyKeyboardMarkup,
-    KeyboardButton,
-)
+from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.exceptions import TelegramBadRequest
 
 from datetime import datetime, date, timedelta
@@ -15,12 +8,8 @@ import asyncio
 from services.training_types import get_all_training_types, get_training_type_by_id
 from services.classes import get_templates_by_training_type, get_template_by_id
 from services.clients import get_client_by_telegram_id
-from services.bookings import (
-    booking_exists,
-    has_free_slots,
-    create_booking,
-    get_free_slots,
-)
+from services.bookings import booking_exists, has_free_slots, create_booking, get_free_slots
+from keyboards.common import phone_keyboard
 
 router = Router()
 
@@ -48,14 +37,6 @@ WEEKDAYS = {
     5: "Сб",
     6: "Вс",
 }
-
-phone_keyboard = ReplyKeyboardMarkup(
-    keyboard=[
-        [KeyboardButton(text="📱 Поделиться номером", request_contact=True)]
-    ],
-    resize_keyboard=True,
-    one_time_keyboard=True,
-)
 
 
 async def safe_answer_callback(callback: CallbackQuery):

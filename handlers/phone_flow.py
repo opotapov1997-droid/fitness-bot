@@ -1,22 +1,11 @@
 from aiogram import Router, F
-from aiogram.types import (
-    Message,
-    ReplyKeyboardMarkup,
-    KeyboardButton,
-)
+from aiogram.types import Message
 
 from services.clients import create_or_update_client
-from keyboards import main_menu
+from keyboards.main_menu import main_menu
+from keyboards.common import phone_keyboard
 
 router = Router()
-
-phone_keyboard = ReplyKeyboardMarkup(
-    keyboard=[
-        [KeyboardButton(text="📱 Поделиться номером", request_contact=True)]
-    ],
-    resize_keyboard=True,
-    one_time_keyboard=True
-)
 
 
 @router.message(F.contact)
